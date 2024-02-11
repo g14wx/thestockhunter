@@ -1,16 +1,13 @@
-# thestuckhunter
+# The Stock Hunter (TSH)
 
-A new Flutter project.
+## Getting started
 
-## Getting Started
+#### Copy and rename the env.example file to env
 
-This project is a starting point for a Flutter application.
+Just run 
+``` bash
+cp env.example env
+```
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Get an API KEY from https://finnhub.io/
+Just visit https://finnhub.io/ and get your free trial API_KEY and paste in the FINN_HUB_API_KEY
