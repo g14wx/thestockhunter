@@ -34,7 +34,6 @@ dev_dependencies:
   riverpod_lint: ^2.3.9
 
   husky: ^0.1.7
-
   riverpod_generator: ^2.3.11
 
   flutter_native_splash: ^2.3.10
