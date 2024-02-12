@@ -26,7 +26,7 @@ class RealTimeStocks extends HookConsumerWidget {
                   final realStockData = data.data.where((tradeData) => tradeData.symbol == stockData.symbol).lastOrNull;
                   if (stockData.priceAlertFromUser != null &&
                       realStockData != null &&
-                      realStockData.lastPrice <= stockData.priceAlertFromUser!) {
+                      realStockData.lastPrice >= stockData.priceAlertFromUser!) {
                     _showAlert(
                         symbol: stockData.symbol,
                         lastPriceStock: realStockData.lastPrice,
@@ -52,7 +52,7 @@ class RealTimeStocks extends HookConsumerWidget {
                           ),
                           Text("\$ ${realStockData?.lastPrice ?? "No data"}"),
                           if (stockData.priceAlertFromUser != null)
-                            Text("Notify me when price is lower than: \$${stockData.priceAlertFromUser}"),
+                            Text("Notify me when price is higher than: \$${stockData.priceAlertFromUser}"),
                           if (stockData.priceAlertFromUser == null) const Text("No alert set for this stock"),
                           TextButton(
                               onPressed: () {
@@ -98,8 +98,9 @@ class RealTimeStocks extends HookConsumerWidget {
   }
 
   _showAlert({required String symbol, required double price, required double lastPriceStock}) async {
-    final title = "Hey your stock $symbol is low as $price";
-    final bodyString = "Your Alert when price is down as $price, stock price at this moment is: $lastPriceStock";
-    await NotificationService().showNotification(channelId: "hello-friend", title: title, bodyString: bodyString);
+    final title = "Hey your stock $symbol is higher as $price";
+    final bodyString = "Your Alert when price is higher as $price, stock price at this moment is: $lastPriceStock";
+    await NotificationService()
+        .showNotification(channelId: "thestockhunterappg14wx", title: title, bodyString: bodyString);
   }
 }

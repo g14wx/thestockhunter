@@ -27,4 +27,10 @@ final class Env {
 
   @EnviedField(varName: 'PATH_SEARCH_SYMBOLS', obfuscate: true)
   static final String pathSearchSymbols = _Env.pathSearchSymbols;
+
+  @EnviedField(varName: 'APP_WRITE_ENDPOINT', obfuscate: true)
+  static final String appWriteEndpoint = _Env.appWriteEndpoint;
+
+  @EnviedField(varName: 'APP_WRITE_PROJECT_ID', obfuscate: true)
+  static final String appWriteProjectId = _Env.appWriteProjectId;
 }

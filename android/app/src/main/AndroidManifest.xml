@@ -4,7 +4,7 @@
     <application
         android:label="thestuckhunter"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true" android:requestLegacyExternalStorage="true" android:allowBackup="false" android:fullBackupContent="false"
         >
         <activity
@@ -26,6 +26,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <intent-filter android:label="flutter_web_auth_2">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="appwrite-callback-65c936bf496373295b1b" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

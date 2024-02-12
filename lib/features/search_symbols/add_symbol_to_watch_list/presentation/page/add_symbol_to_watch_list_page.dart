@@ -37,7 +37,7 @@ class AddSymbolToWatchListPage extends HookConsumerWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      const Text('Notify me when Price is lower as'),
+                      const Text('Notify me when Price is higher as'),
                       const SizedBox(
                         height: 10,
                       ),
@@ -60,7 +60,7 @@ class AddSymbolToWatchListPage extends HookConsumerWidget {
                         decoration: const InputDecoration(
                           focusedBorder: OutlineInputBorder(),
                           enabledBorder: OutlineInputBorder(),
-                          hintText: 'Notify me when Price is lower as',
+                          hintText: 'Notify me when Price is higher as',
                         ),
                       ),
                       const SizedBox(

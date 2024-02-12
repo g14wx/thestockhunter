@@ -23,6 +23,8 @@ dependencies:
   go_router: ^13.2.0
   web_socket_channel: ^2.4.3
   permission_handler: ^11.2.1
+  appwrite: ^11.0.1
+  flutter_local_notifications: ^16.3.2
 
 dev_dependencies:
   flutter_test:
@@ -40,7 +42,7 @@ dev_dependencies:
   flutter_native_splash: ^2.3.10
   flutter_launcher_icons: ^0.13.1
   envied_generator: ^0.5.3
-  flutter_local_notifications: ^16.3.2
+
 
 dependency_overrides:
   web: ^0.4.2
@@ -51,3 +53,4 @@ flutter:
   #generate: true
   assets:
     - env
+    - assets/splash/logo.png

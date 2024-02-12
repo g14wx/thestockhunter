@@ -11,5 +11,4 @@ Future<void> appStartup(AppStartupRef ref) async {
     ref.invalidate(stocksRepositoryProvider);
     ref.invalidate(dioProvider);
   });
-  // await ref.watch(sharedPreferencesProvider.future);
 }
