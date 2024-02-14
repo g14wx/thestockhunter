@@ -4,7 +4,7 @@ import 'package:thestuckhunter/providers/stocks_to_watch_provider/models/local_s
 
 part 'stocks_to_watch.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class StocksToWatch extends _$StocksToWatch {
   @override
   LocalStockModels build() {
@@ -22,4 +22,6 @@ class StocksToWatch extends _$StocksToWatch {
     tempList.removeAt(symbolAlertIndex);
     state = state.copyWith(stocks: [...tempList]);
   }
+
+  void setStocks({required List<SymbolModel> symbolModels}) => state = state.copyWith(stocks: symbolModels);
 }

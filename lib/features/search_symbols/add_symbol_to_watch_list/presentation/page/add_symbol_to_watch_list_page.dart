@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:thestuckhunter/features/search_symbols/add_symbol_to_watch_list/providers/selected_symbol_to_add_to_watch_list.dart';
 import 'package:thestuckhunter/features/stocks/data/models/symbol_model/symbol_model.dart';
 import 'package:thestuckhunter/providers/stocks_to_watch_provider/stocks_to_watch.dart';
+import 'package:thestuckhunter/services/stock_last_prices_service/stock_last_prices_stream_provider_service.dart';
 
 class AddSymbolToWatchListPage extends HookConsumerWidget {
   final RootSymbolModelResponse symbolRoot;
@@ -83,7 +84,12 @@ class AddSymbolToWatchListPage extends HookConsumerWidget {
                               if (newSymbolModel != null) {
                                 final modelToInserted = newSymbolModel.copyWith(
                                     priceAlertFromUser: double.parse(priceTextController.value.text));
+                                // Add to watch list
                                 ref.read(stocksToWatchProvider.notifier).setNewStock(newSymbolModel: modelToInserted);
+                                // subscribe symbol to websocket
+                                ref
+                                    .read(stockLastPricesStreamProviderServiceProvider.notifier)
+                                    .setNewSymbol(symbol: newSymbolModel.symbol);
                               } else {
                                 const snackBar = SnackBar(
                                   backgroundColor: Colors.red,

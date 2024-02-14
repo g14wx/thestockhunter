@@ -6,7 +6,7 @@ part of 'stock_last_prices_stream_provider_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$stockLastPricesStreamProviderServiceHash() => r'dd95f857e4d15891dcc7561f77577a8a67a0d561';
+String _$stockLastPricesStreamProviderServiceHash() => r'079cbdaa5d86f24a119cf4033e08f658c3668ad9';
 
 /// See also [StockLastPricesStreamProviderService].
 @ProviderFor(StockLastPricesStreamProviderService)

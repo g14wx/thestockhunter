@@ -20,7 +20,8 @@ class SymbolModel with _$SymbolModel {
       required String description,
       required String displaySymbol,
       required String symbol,
-      double? priceAlertFromUser}) = _SymbolModel;
+      double? priceAlertFromUser,
+      double? lastPriceCache}) = _SymbolModel;
 
   factory SymbolModel.fromJson(Map<String, dynamic> json) => _$SymbolModelFromJson(json);
 }

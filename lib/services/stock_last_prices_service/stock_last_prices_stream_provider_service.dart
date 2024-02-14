@@ -22,6 +22,9 @@ class StockLastPricesStreamProviderService extends _$StockLastPricesStreamProvid
 
   @override
   Stream<LastPriceModel> build() async* {
+    if (streamController.isClosed) {
+      streamController = StreamController.broadcast(sync: true);
+    }
     yield* streamController.stream.map((event) {
       try {
         final rawJson = jsonDecode(event);
@@ -84,6 +87,11 @@ class StockLastPricesStreamProviderService extends _$StockLastPricesStreamProvid
 
   void setNewSymbol({required String symbol}) {
     final jsonString = jsonEncode({"type": "subscribe", "symbol": symbol});
+    channel.add(jsonString);
+  }
+
+  void removeSymbol({required String symbol}) {
+    final jsonString = jsonEncode({"type": "unsubscribe", "symbol": symbol});
     channel.add(jsonString);
   }
 

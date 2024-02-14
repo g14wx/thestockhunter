@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:thestuckhunter/services/sing_in_with_third_party_service/sing_in_with_third_party_service.dart';
+import 'package:thestuckhunter/features/info/controller/info_controller.dart';
+import 'package:thestuckhunter/features/info/presentation/page/screens/initial_state_auth_screen.dart';
+import 'package:thestuckhunter/features/info/presentation/page/screens/loading_auth_screen.dart';
+import 'package:thestuckhunter/features/info/presentation/page/screens/success_logged_user.dart';
 
 class InfoPage extends HookConsumerWidget {
   const InfoPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final signInWithThirdPartyService = ref.watch(signInWithThirdPartyServiceProvider);
+    final localIInfoControllerProvider = ref.watch(infoControllerProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("G14wx"),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            TextButton(
-                onPressed: () {
-                  ref.read(signInWithThirdPartyServiceProvider.notifier).socialSignIn("google", context);
-                },
-                child: const Text("Log in")),
-            if (signInWithThirdPartyService.isLoggedIn) Text(signInWithThirdPartyService.account.toString())
-          ],
+        appBar: AppBar(
+          title: const Text("G14wx"),
         ),
-      ),
-    );
+        body: Container(
+          child: localIInfoControllerProvider.isLoading
+              ? const LoadingAuthScreen()
+              : localIInfoControllerProvider.loggedUserModel != null
+                  ? const SuccessLoggedUser()
+                  : const InitialStateAuthScreen(),
+        ));
   }
 }
