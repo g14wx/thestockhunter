@@ -95,7 +95,7 @@ class RealTimeStocks extends HookConsumerWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Basic dialog title'),
+          title: const Text('Set price alert'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
