@@ -1,0 +1,48 @@
+on:
+  push:
+    branches:
+      - main
+      - master
+name: "🚀 📱 Build & Release"
+jobs:
+  build:
+    name: Build & Release
+    env:
+      auth_project_id: ${{secrets.AUTH_PROJECT_ID}}
+      auth_key: ${{secrets.AUTH_KEY}}
+    runs-on: ubuntu-latest #macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Create env file'
+        run: |
+          touch env &&
+          echo FINN_HUB_API_KEY=production >> env &&
+          echo BASE_FINN_HUB_URL=finnhub.io >> env &&
+          echo PATH_PREFIX_API=/api >> env &&
+          echo PATH_API_VERSION=/v1 >> env &&
+          echo PATH_GET_STOCKS_FINN_HUB=/quote >> env &&
+          echo PATH_SEARCH_SYMBOLS=/search >> env &&
+          echo PATH_GET_SYMBOLS_FINN_HUB=/stock/symbol >> env &&
+          echo SOCKET_FINN_LAST_PRICES=ws.finnhub.io >> env &&
+          echo AUTH_ENDPOINT=https://fnmjxaqxtflgzpdalbod.supabase.co >> env &&
+          echo AUTH_PROJECT_ID=${{env.auth_project_id}} >> env &&
+          echo AUTH_KEY=${{env.auth_key}} >> env &&
+          echo GOOGLE_WEB_CLIENT_ID=605086422819-na70ts89qkcho43nbnm4fpe9dekfcofb.apps.googleusercontent.com >> env &&
+          cat env
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '3.16.4'
+      - run: flutter pub get
+
+
+      - run: flutter build apk --dart-define=ENV=production -t lib/main.dart
+
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*"
+          tag: thestockhunter.${{ github.run_number }}
+          token: ${{ secrets.PAT }}

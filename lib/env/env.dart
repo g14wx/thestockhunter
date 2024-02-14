@@ -28,9 +28,13 @@ final class Env {
   @EnviedField(varName: 'PATH_SEARCH_SYMBOLS', obfuscate: true)
   static final String pathSearchSymbols = _Env.pathSearchSymbols;
 
-  @EnviedField(varName: 'APP_WRITE_ENDPOINT', obfuscate: true)
-  static final String appWriteEndpoint = _Env.appWriteEndpoint;
+  @EnviedField(varName: 'AUTH_ENDPOINT', obfuscate: true)
+  static final String authEndpoint = _Env.authEndpoint;
 
-  @EnviedField(varName: 'APP_WRITE_PROJECT_ID', obfuscate: true)
-  static final String appWriteProjectId = _Env.appWriteProjectId;
+  @EnviedField(varName: 'AUTH_PROJECT_ID', obfuscate: true)
+  static final String authProjectId = _Env.authProjectId;
+  @EnviedField(varName: 'AUTH_KEY', obfuscate: true)
+  static final String authKey = _Env.authKey;
+  @EnviedField(varName: 'GOOGLE_WEB_CLIENT_ID', obfuscate: true)
+  static final String googleWebClientId = _Env.googleWebClientId;
 }

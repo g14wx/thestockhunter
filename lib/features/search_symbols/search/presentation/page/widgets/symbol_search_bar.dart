@@ -67,7 +67,8 @@ class _SearchBarState extends ConsumerState<SymbolSearchBar> {
           ),
         ),
         TextButton(
-          onPressed: () => ref.read(symbolSearchTextProvider.notifier).state = _controller.text,
+          onPressed: () =>
+              _controller.text.isNotEmpty ? ref.read(symbolSearchTextProvider.notifier).state = _controller.text : null,
           child: const Text("Search!"),
         )
       ],

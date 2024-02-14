@@ -23,6 +23,7 @@ _$SymbolModelImpl _$$SymbolModelImplFromJson(Map<String, dynamic> json) => _$Sym
       displaySymbol: json['displaySymbol'] as String,
       symbol: json['symbol'] as String,
       priceAlertFromUser: (json['priceAlertFromUser'] as num?)?.toDouble(),
+      lastPriceCache: (json['lastPriceCache'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$SymbolModelImplToJson(_$SymbolModelImpl instance) => <String, dynamic>{
@@ -31,4 +32,5 @@ Map<String, dynamic> _$$SymbolModelImplToJson(_$SymbolModelImpl instance) => <St
       'displaySymbol': instance.displaySymbol,
       'symbol': instance.symbol,
       'priceAlertFromUser': instance.priceAlertFromUser,
+      'lastPriceCache': instance.lastPriceCache,
     };

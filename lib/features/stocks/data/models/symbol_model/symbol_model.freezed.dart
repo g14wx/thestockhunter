@@ -180,6 +180,7 @@ mixin _$SymbolModel {
   String get displaySymbol => throw _privateConstructorUsedError;
   String get symbol => throw _privateConstructorUsedError;
   double? get priceAlertFromUser => throw _privateConstructorUsedError;
+  double? get lastPriceCache => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -191,7 +192,13 @@ abstract class $SymbolModelCopyWith<$Res> {
   factory $SymbolModelCopyWith(SymbolModel value, $Res Function(SymbolModel) then) =
       _$SymbolModelCopyWithImpl<$Res, SymbolModel>;
   @useResult
-  $Res call({String? currency, String description, String displaySymbol, String symbol, double? priceAlertFromUser});
+  $Res call(
+      {String? currency,
+      String description,
+      String displaySymbol,
+      String symbol,
+      double? priceAlertFromUser,
+      double? lastPriceCache});
 }
 
 /// @nodoc
@@ -211,6 +218,7 @@ class _$SymbolModelCopyWithImpl<$Res, $Val extends SymbolModel> implements $Symb
     Object? displaySymbol = null,
     Object? symbol = null,
     Object? priceAlertFromUser = freezed,
+    Object? lastPriceCache = freezed,
   }) {
     return _then(_value.copyWith(
       currency: freezed == currency
@@ -233,6 +241,10 @@ class _$SymbolModelCopyWithImpl<$Res, $Val extends SymbolModel> implements $Symb
           ? _value.priceAlertFromUser
           : priceAlertFromUser // ignore: cast_nullable_to_non_nullable
               as double?,
+      lastPriceCache: freezed == lastPriceCache
+          ? _value.lastPriceCache
+          : lastPriceCache // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -243,7 +255,13 @@ abstract class _$$SymbolModelImplCopyWith<$Res> implements $SymbolModelCopyWith<
       __$$SymbolModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? currency, String description, String displaySymbol, String symbol, double? priceAlertFromUser});
+  $Res call(
+      {String? currency,
+      String description,
+      String displaySymbol,
+      String symbol,
+      double? priceAlertFromUser,
+      double? lastPriceCache});
 }
 
 /// @nodoc
@@ -260,6 +278,7 @@ class __$$SymbolModelImplCopyWithImpl<$Res> extends _$SymbolModelCopyWithImpl<$R
     Object? displaySymbol = null,
     Object? symbol = null,
     Object? priceAlertFromUser = freezed,
+    Object? lastPriceCache = freezed,
   }) {
     return _then(_$SymbolModelImpl(
       currency: freezed == currency
@@ -282,6 +301,10 @@ class __$$SymbolModelImplCopyWithImpl<$Res> extends _$SymbolModelCopyWithImpl<$R
           ? _value.priceAlertFromUser
           : priceAlertFromUser // ignore: cast_nullable_to_non_nullable
               as double?,
+      lastPriceCache: freezed == lastPriceCache
+          ? _value.lastPriceCache
+          : lastPriceCache // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -294,7 +317,8 @@ class _$SymbolModelImpl implements _SymbolModel {
       required this.description,
       required this.displaySymbol,
       required this.symbol,
-      this.priceAlertFromUser});
+      this.priceAlertFromUser,
+      this.lastPriceCache});
 
   factory _$SymbolModelImpl.fromJson(Map<String, dynamic> json) => _$$SymbolModelImplFromJson(json);
 
@@ -308,10 +332,12 @@ class _$SymbolModelImpl implements _SymbolModel {
   final String symbol;
   @override
   final double? priceAlertFromUser;
+  @override
+  final double? lastPriceCache;
 
   @override
   String toString() {
-    return 'SymbolModel(currency: $currency, description: $description, displaySymbol: $displaySymbol, symbol: $symbol, priceAlertFromUser: $priceAlertFromUser)';
+    return 'SymbolModel(currency: $currency, description: $description, displaySymbol: $displaySymbol, symbol: $symbol, priceAlertFromUser: $priceAlertFromUser, lastPriceCache: $lastPriceCache)';
   }
 
   @override
@@ -324,12 +350,14 @@ class _$SymbolModelImpl implements _SymbolModel {
             (identical(other.displaySymbol, displaySymbol) || other.displaySymbol == displaySymbol) &&
             (identical(other.symbol, symbol) || other.symbol == symbol) &&
             (identical(other.priceAlertFromUser, priceAlertFromUser) ||
-                other.priceAlertFromUser == priceAlertFromUser));
+                other.priceAlertFromUser == priceAlertFromUser) &&
+            (identical(other.lastPriceCache, lastPriceCache) || other.lastPriceCache == lastPriceCache));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, currency, description, displaySymbol, symbol, priceAlertFromUser);
+  int get hashCode =>
+      Object.hash(runtimeType, currency, description, displaySymbol, symbol, priceAlertFromUser, lastPriceCache);
 
   @JsonKey(ignore: true)
   @override
@@ -351,7 +379,8 @@ abstract class _SymbolModel implements SymbolModel {
       required final String description,
       required final String displaySymbol,
       required final String symbol,
-      final double? priceAlertFromUser}) = _$SymbolModelImpl;
+      final double? priceAlertFromUser,
+      final double? lastPriceCache}) = _$SymbolModelImpl;
 
   factory _SymbolModel.fromJson(Map<String, dynamic> json) = _$SymbolModelImpl.fromJson;
 
@@ -365,6 +394,8 @@ abstract class _SymbolModel implements SymbolModel {
   String get symbol;
   @override
   double? get priceAlertFromUser;
+  @override
+  double? get lastPriceCache;
   @override
   @JsonKey(ignore: true)
   _$$SymbolModelImplCopyWith<_$SymbolModelImpl> get copyWith => throw _privateConstructorUsedError;
