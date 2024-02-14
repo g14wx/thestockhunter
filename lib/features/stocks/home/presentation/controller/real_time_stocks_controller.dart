@@ -60,8 +60,12 @@ class RealTimeStocksController extends _$RealTimeStocksController {
   _showAlert({required String symbol, required double price, required double lastPriceStock}) async {
     final title = "Hey your stock $symbol is higher as $price";
     final bodyString = "Your Alert when price is higher as $price, stock price at this moment is: $lastPriceStock";
-    final notificationService = ref.watch(notificationServiceProvider).requireValue;
-    AsyncValue.data(notificationService.showNotification(
-        channelId: "the-stuck-hunter-g14wxz", title: title, bodyString: bodyString));
+    try {
+      final notificationService = ref.watch(notificationServiceProvider).requireValue;
+      AsyncValue.data(notificationService.showNotification(
+          channelId: "the-stuck-hunter-g14wxz", title: title, bodyString: bodyString));
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

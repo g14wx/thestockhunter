@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:thestuckhunter/features/search_symbols/repositories/stock_repository/stocks_repository.dart';
 import 'package:thestuckhunter/providers/app_router_provider/app_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -16,6 +17,11 @@ Future<void> appStartup(AppStartupRef ref) async {
     ref.invalidate(signInWithThirdPartyServiceProvider);
   });
 
-  await Future.wait(
-      [ref.watch(signInWithThirdPartyServiceProvider.future), ref.watch(notificationServiceProvider.future)]);
+  List<Future> listOfDependencies = [ref.watch(signInWithThirdPartyServiceProvider.future)];
+
+  if (kIsWeb) {
+    listOfDependencies.add(ref.watch(notificationServiceProvider.future));
+  }
+
+  await Future.wait(listOfDependencies);
 }
