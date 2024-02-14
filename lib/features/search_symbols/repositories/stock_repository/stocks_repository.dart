@@ -23,7 +23,7 @@ class StocksRepository {
         scheme: 'https',
         host: Env.baseFinnHubApiUrl,
         path: "${Env.pathPrefixApi}${Env.pathApiVersion}${Env.pathSearchSymbols}",
-        queryParameters: {"q": symbol, "token": token}).toString();
+        queryParameters: {"q": symbol.toLowerCase().trim(), "token": token}).toString();
     final response = await client.get(url, cancelToken: cancelToken);
     final json = response.data as Map<String, dynamic>;
     return RootSymbolModelResponse.fromJson(json);

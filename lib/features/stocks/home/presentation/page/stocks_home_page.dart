@@ -8,7 +8,7 @@ class StocksHomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Search symbol")),
+        appBar: AppBar(title: const Text("Stocks")),
         body: Center(
           child: ConstrainedBox(
             constraints: BoxConstraints.loose(const Size.fromWidth(700)),

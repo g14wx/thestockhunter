@@ -13,7 +13,7 @@ class InfoPage extends HookConsumerWidget {
     final localIInfoControllerProvider = ref.watch(infoControllerProvider);
     return Scaffold(
         appBar: AppBar(
-          title: const Text("G14wx"),
+          title: const Text("Login"),
         ),
         body: Container(
           child: localIInfoControllerProvider.isLoading

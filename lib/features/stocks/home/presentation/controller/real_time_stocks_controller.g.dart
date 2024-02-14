@@ -6,7 +6,7 @@ part of 'real_time_stocks_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$realTimeStocksControllerHash() => r'4ff5a95550bb0289bd9335683491d1632eae56b2';
+String _$realTimeStocksControllerHash() => r'8650bcf003c4880e8b4956c35d07346507c8c2fa';
 
 /// See also [RealTimeStocksController].
 @ProviderFor(RealTimeStocksController)

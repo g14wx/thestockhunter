@@ -82,6 +82,15 @@ class AddSymbolToWatchListPage extends HookConsumerWidget {
                                   .where((element) => element.symbol == selectedSymbolToAddToWatchListProvider)
                                   .firstOrNull;
                               if (newSymbolModel != null) {
+                                // check if there is already this stock in the watch list
+                                final stocksInWatchList = ref.watch(stocksToWatchProvider);
+                                if (stocksInWatchList.stocks
+                                    .where((symbol) => symbol.symbol == newSymbolModel.symbol)
+                                    .isNotEmpty) {
+                                  _showSnackBar(context: context, title: 'There is an already stock in the watchlist');
+                                  return;
+                                }
+
                                 final modelToInserted = newSymbolModel.copyWith(
                                     priceAlertFromUser: double.parse(priceTextController.value.text));
                                 // Add to watch list
@@ -91,29 +100,12 @@ class AddSymbolToWatchListPage extends HookConsumerWidget {
                                     .read(stockLastPricesStreamProviderServiceProvider.notifier)
                                     .setNewSymbol(symbol: newSymbolModel.symbol);
                               } else {
-                                const snackBar = SnackBar(
-                                  backgroundColor: Colors.red,
-                                  content: Text('You need to set your price and your stock before go!'),
-                                );
-                                try {
-                                  ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                                } catch (e) {
-                                  debugPrint(e.toString());
-                                }
-                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                _showSnackBar(context: context, title: 'Symbol was not found');
                               }
                               context.pop();
                             } else {
-                              const snackBar = SnackBar(
-                                backgroundColor: Colors.red,
-                                content: Text('You need to set your price and your stock before go!'),
-                              );
-                              try {
-                                ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                              } catch (e) {
-                                debugPrint(e.toString());
-                              }
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              _showSnackBar(
+                                  context: context, title: 'You need to set your price and your stock before go!');
                             }
                           },
                           child: const Text("Add alert!"))
@@ -126,6 +118,19 @@ class AddSymbolToWatchListPage extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  void _showSnackBar({required BuildContext context, required String title, Color color = Colors.red}) {
+    final snackBar = SnackBar(
+      backgroundColor: color,
+      content: Text(title),
+    );
+    try {
+      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
 

@@ -29,9 +29,9 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
             label: 'Search',
           ),
           NavigationDestination(
-            icon: Icon(Icons.info),
-            selectedIcon: Icon(Icons.info),
-            label: 'Info',
+            icon: Icon(Icons.account_circle_outlined),
+            selectedIcon: Icon(Icons.account_circle),
+            label: 'Account',
           ),
         ],
         onDestinationSelected: onDestinationSelected,

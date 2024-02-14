@@ -32,9 +32,9 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
                 label: Text('Search'),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.info_outline),
-                selectedIcon: Icon(Icons.info),
-                label: Text('Info'),
+                icon: Icon(Icons.account_circle_outlined),
+                selectedIcon: Icon(Icons.account_circle),
+                label: Text('Account'),
               ),
             ],
           ),

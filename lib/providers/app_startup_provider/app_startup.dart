@@ -2,7 +2,9 @@ import 'package:thestuckhunter/features/search_symbols/repositories/stock_reposi
 import 'package:thestuckhunter/providers/app_router_provider/app_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:thestuckhunter/providers/dio_provider/dio_provider/dio.dart';
+import 'package:thestuckhunter/services/push_notifications_service/notification_service.dart';
 import 'package:thestuckhunter/services/sing_in_with_third_party_service/sing_in_with_third_party_service.dart';
+
 part 'app_startup.g.dart';
 
 @Riverpod(keepAlive: true)
@@ -14,5 +16,6 @@ Future<void> appStartup(AppStartupRef ref) async {
     ref.invalidate(signInWithThirdPartyServiceProvider);
   });
 
-  await Future.wait([ref.watch(signInWithThirdPartyServiceProvider.future)]);
+  await Future.wait(
+      [ref.watch(signInWithThirdPartyServiceProvider.future), ref.watch(notificationServiceProvider.future)]);
 }

@@ -10,7 +10,17 @@ class InitialStateAuthScreen extends HookConsumerWidget {
     return Center(
       child: TextButton(
         onPressed: () => ref.read(infoControllerProvider.notifier).sigIn(),
-        child: const Text("Login"),
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.login),
+            SizedBox(
+              width: 10,
+            ),
+            Text("Login with google"),
+          ],
+        ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:thestuckhunter/features/stocks/data/models/symbol_model/symbol_model.dart';
 import 'package:thestuckhunter/providers/stocks_to_watch_provider/stocks_to_watch.dart';
+import 'package:thestuckhunter/services/push_notifications_service/notification_service.dart';
 import 'package:thestuckhunter/services/stock_last_prices_service/stock_last_prices_stream_provider_service.dart';
 
 part 'real_time_stocks_controller.g.dart';
@@ -39,7 +40,10 @@ class RealTimeStocksController extends _$RealTimeStocksController {
               // check if there is an alert
               if (stockData.priceAlertFromUser != null &&
                   lastRealTimeStockData.lastPrice >= stockData.priceAlertFromUser!) {
-                // _showAlert(symbol: stockData.symbol, lastPriceStock: realTimeStockData.lastPrice, price: stockData.priceAlertFromUser!);
+                _showAlert(
+                    symbol: stockData.symbol,
+                    lastPriceStock: lastRealTimeStockData.lastPrice,
+                    price: stockData.priceAlertFromUser!);
               }
               lastPrice = lastRealTimeStockData.lastPrice;
             }
@@ -51,5 +55,13 @@ class RealTimeStocksController extends _$RealTimeStocksController {
     );
 
     debugPrint(last.toString());
+  }
+
+  _showAlert({required String symbol, required double price, required double lastPriceStock}) async {
+    final title = "Hey your stock $symbol is higher as $price";
+    final bodyString = "Your Alert when price is higher as $price, stock price at this moment is: $lastPriceStock";
+    final notificationService = ref.watch(notificationServiceProvider).requireValue;
+    AsyncValue.data(notificationService.showNotification(
+        channelId: "the-stuck-hunter-g14wxz", title: title, bodyString: bodyString));
   }
 }

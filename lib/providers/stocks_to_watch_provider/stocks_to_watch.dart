@@ -19,8 +19,21 @@ class StocksToWatch extends _$StocksToWatch {
 
   void removeStock({required int symbolAlertIndex}) {
     final tempList = [...state.stocks];
-    tempList.removeAt(symbolAlertIndex);
-    state = state.copyWith(stocks: [...tempList]);
+    if (tempList.isNotEmpty) {
+      tempList.removeAt(symbolAlertIndex);
+      state = state.copyWith(stocks: [...tempList]);
+    }
+  }
+
+  void setAlertToStock({required int indexSymbol, required double priceAlert}) {
+    final tempList = [...state.stocks];
+    if (tempList.isNotEmpty) {
+      final symbolModelToAddAlert = tempList.elementAt(indexSymbol);
+      final modifiedSymbolModel = symbolModelToAddAlert.copyWith(priceAlertFromUser: priceAlert);
+      tempList.removeAt(indexSymbol);
+      tempList.add(modifiedSymbolModel);
+      state = state.copyWith(stocks: [...tempList]);
+    }
   }
 
   void setStocks({required List<SymbolModel> symbolModels}) => state = state.copyWith(stocks: symbolModels);

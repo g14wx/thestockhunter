@@ -11,22 +11,26 @@ class SearchSymbolSuccessScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return CustomScrollView(
-      slivers: [
-        SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-          return ListTile(
-            onTap: () {
-              ref.read(selectedSymbolToAddToWatchList.notifier).state = symbolRoot.result[index].symbol;
-              context.go("/search/add", extra: symbolRoot);
-            },
-            title: Text(symbolRoot.result[index].description),
-            leading: const Icon(Icons.circle),
-            subtitle: Text(symbolRoot.result[index].symbol),
-            trailing: const Text("Add alert"),
+    return symbolRoot.result.isNotEmpty
+        ? CustomScrollView(
+            slivers: [
+              SliverList(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                return ListTile(
+                  onTap: () {
+                    ref.read(selectedSymbolToAddToWatchList.notifier).state = symbolRoot.result[index].symbol;
+                    context.go("/search/add", extra: symbolRoot);
+                  },
+                  title: Text(symbolRoot.result[index].description),
+                  leading: const Icon(Icons.circle),
+                  subtitle: Text(symbolRoot.result[index].symbol),
+                  trailing: const Text("Add alert"),
+                );
+              }, childCount: symbolRoot.count))
+            ],
+          )
+        : const Center(
+            child: Text("We didn't find a stock with that symbol"),
           );
-        }, childCount: symbolRoot.count))
-      ],
-    );
   }
 }

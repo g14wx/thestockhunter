@@ -6,7 +6,7 @@ part of 'stocks_to_watch.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$stocksToWatchHash() => r'0ca581226738ff38562f8974c1160d17a0979783';
+String _$stocksToWatchHash() => r'5b35b84e798bec8609fb912cdd59d57560b942a8';
 
 /// See also [StocksToWatch].
 @ProviderFor(StocksToWatch)
