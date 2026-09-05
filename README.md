@@ -47,3 +47,5 @@ you can check out the file on [app_startup.dart](https://github.com/g14wx/thesto
 #### FAQs
 Is this project working for any platform?
 - This app only works with Android by the moment!
+
+<!-- Security scan triggered at 2026-09-05 07:56:00 -->
